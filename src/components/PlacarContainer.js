@@ -4,6 +4,8 @@ import Time from './Time';
 
 import Partida from './Partida';
 
+import Footer from './Footer';
+
 export default class PlacarContainer extends React.Component {
   constructor() {
     super();
@@ -31,16 +33,30 @@ export default class PlacarContainer extends React.Component {
 
     return (
       <div style={{width: '100%'}}>
-        <div style={estilo}>
-          <Time nome={casa.nome} gols={this.state.gols_casa} marcarGol={this.marcarGolCasa.bind(this)} />
+        <div style={{display: 'inline-block', width: '100%'}}>
+          <div style={estilo}>
+            <Time nome={casa.nome} gols={this.state.gols_casa} marcarGol={this.marcarGolCasa.bind(this)} />
+          </div>
+          <div style={estilo}>
+            <Partida {...partida}/>
+          </div>
+          <div style={estilo}>
+            <Time nome={visitante.nome} gols={this.state.gols_visitante} marcarGol={this.marcarGolVisitante.bind(this)}/>
+          </div>
         </div>
-        <div style={estilo}>
-          <Partida {...partida}/>
-        </div>
-        <div style={estilo}>
-          <Time nome={visitante.nome} gols={this.state.gols_visitante} marcarGol={this.marcarGolVisitante.bind(this)}/>
+        <div style={{clear: 'both', 'marginTop': '50px',}}>
+          <Footer />
         </div>
       </div>
     );
   }
+}
+
+
+PlacarContainer.propTypes = {
+  clima: React.PropTypes.string,
+}
+
+PlacarContainer.defaultProps = {
+  clima: 'Ensolarado'
 }

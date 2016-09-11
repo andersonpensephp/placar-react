@@ -5,7 +5,7 @@ export default class BotaoGol extends React.Component {
     e.preventDefault();
     this.props.marcarGol();
   }
-  
+
   render() {
     return (
       <div>
